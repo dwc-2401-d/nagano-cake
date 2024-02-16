@@ -8,11 +8,11 @@ Rails.application.routes.draw do
     sessions: 'admin/sessions'
   }
 
-
-
-
-
-
+  scope module: :public do
+    get "customers/mypage" => "customers#show"
+    get "customers/information/edit" => "customers#edit"
+    patch "customers/information" => "customers#update"
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   devise_for :users
 end
