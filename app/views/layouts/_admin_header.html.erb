@@ -1,0 +1,47 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#fa8072;">
+    <div class="container">
+      <a class="navbar-brand" href="/">NaganoCake</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav ml-auto">
+          <% if admin_signed_in? %>
+            <li class="nav-item">
+              <i class="fa-solid fa-cake-candles" style="color: #ffffff;"></i>商品一覧
+            </li>
+            <li class="nav-item">
+              <i class="fa-solid fa-users" style="color: #ffffff;"></i>会員一覧
+            </li>
+            <li class="nav-item">
+              <i class="fa-solid fa-receipt" style="color: #ffffff;"></i>注文履歴一覧
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_genres_path, class: 'nav-link text-white' do %>
+              <i class="fa-solid fa-list-ul" style="color: #ffffff;"></i>ジャンル一覧
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <i class="fa-solid fa-right-from-bracket" style="color: #ffffff;"></i>ログアウト
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <i class="fa-solid fa-link" style="color: #ffffff;"></i>About
+            </li>
+            <li class="nav-item">
+              <i class="fa-solid fa-cake-candles" style="color: #ffffff;"></i>商品一覧
+            </li>
+            <li class="nav-item">
+              <i class="fa-solid fa-user-plus" style="color: #ffffff;"></i>新規登録
+            </li>
+            <li class="nav-item">
+              <i class="fa-solid fa-right-to-bracket" style="color: #ffffff;"></i>ログイン
+            </li>
+          <% end %>
+          </ul>
+        </div>
+    </div>
+  </nav>
+</header>
