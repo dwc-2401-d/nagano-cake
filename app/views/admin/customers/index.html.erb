@@ -1,0 +1,18 @@
+<h2>会員一覧</h2>
+<% @customers.each do |customer| %>
+<table>
+  <thead>
+    <tr>
+      <th>氏名</th>
+      <th>メールアドレス</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td></td>
+      <td><%= customer.email %></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+<% end %>
