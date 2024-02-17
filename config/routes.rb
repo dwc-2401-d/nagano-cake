@@ -8,12 +8,6 @@ Rails.application.routes.draw do
     sessions: 'admin/sessions'
   }
 
-  scope module: :public do
-    get "customers/my_page" => "customers#show"
-    get "customers/information/edit" => "customers#edit"
-    patch "customers/information" => "customers#update"
-  end
-
   namespace :admin do
     resources :genres, only: [:create, :index, :edit, :update]
   end
