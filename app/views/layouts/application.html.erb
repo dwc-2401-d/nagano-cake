@@ -20,19 +20,37 @@
            </button>
            <div class="collapse navbar-collapse" id="navbarNavDropdown">
              <ul class="navbar-nav ml-auto">
-             <li class="nav-item">
-                 <i class="" style=""></i>About
-             </li>
-             <li class="nav-item">
-                 <i class="" style=""></i>商品一覧
-             </li>
-             <li class="nav-item">
-                 <i class="" style=""></i>新規登録
-             </li>
-             <li class="nav-item">
-                 <i class="" style=""></i>ログイン
-             </li>
-            </ul>
+             <% if customer_signed_in? %>
+               <div class="mt-3 mr-5 text-while">
+                 ようこそ、<%= current_customer.last_name %>さん！
+               </div>
+               <li class="nav-item">
+                   <i class="" style=""></i>About
+               </li>
+               <li class="nav-item">
+                   <i class="" style=""></i>商品一覧
+               </li>
+               <li class="nav-item">
+                   <i class="" style=""></i>カート
+               </li>
+               <li class="nav-item">
+                   <i class="" style=""></i>ログアウト
+               </li>
+             <% else %>
+               <li class="nav-item">
+                   <i class="" style=""></i>About
+               </li>
+               <li class="nav-item">
+                   <i class="" style=""></i>商品一覧
+               </li>
+               <li class="nav-item">
+                   <i class="" style=""></i>新規登録
+               </li>
+               <li class="nav-item">
+                   <i class="" style=""></i>ログイン
+               </li>
+             <% end %>
+             </ul>
           </div>
         </div>
       </nav>
