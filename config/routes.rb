@@ -9,9 +9,13 @@ Rails.application.routes.draw do
   }
 
   scope module: :public do
-    get "customers/mypage" => "customers#show"
+    get "customers/my_page" => "customers#show"
     get "customers/information/edit" => "customers#edit"
     patch "customers/information" => "customers#update"
+  end
+
+  namespace :admin do
+    resources :genres, only: [:create, :index, :edit, :update]
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   devise_for :users
