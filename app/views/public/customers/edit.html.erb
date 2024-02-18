@@ -1,21 +1,17 @@
 <h4>会員情報編集</h4>
 
 <table>
+<%= form_with model: @customer, url: customers_information_path(@customer), method: :patch do |f| %>
   <tr>
     <td>氏名</td>
-    <td><%= f.text_field :last_name %></td>
     <td><%= f.text_field :first_name %></td>
+    <td><%= f.text_field :last_name %></td>
   </tr>
 
   <tr>
     <td>カナ</td>
-    <td><%= f.text_field :last_name_kana %></td>
     <td><%= f.text_field :first_name_kana %></td>
-  </tr>
-
-  <tr>
-    <td>郵便番号</td>
-    <td><%= f.text_field :post_code %></td>
+    <td><%= f.text_field :last_name_kana %></td>
   </tr>
 
   <tr>
@@ -35,7 +31,8 @@
 
   <tr>
     <td></td>
-    <td><%= link_to "編集内容を保存", class: "btn btn-success" %></td>
-    <td><%= link_to "退会する", customers_unsubscribe_path, class: "btn btn-danger" %></td>
+    <td><%= f.submit "編集内容を保存" %></td>
+    <td><%= link_to "退会する" %></td>
   </tr>
+<% end %>
 </table>
