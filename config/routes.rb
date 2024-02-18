@@ -10,6 +10,8 @@ Rails.application.routes.draw do
    root to: "public/homes#top"
    namespace :public do
   resources :customers, only: [:new, :create]
+  resources :items, only: [:index, :show]
+  
    end
 
 

@@ -1,0 +1,20 @@
+
+      <br><%= image_tag @item.image, size: "100x100" %><br>
+    
+      <h3><strong><%= @item.name %></strong></h3><br>
+      <h5><strong><%= @item.introduction %></strong></h5><br>
+      <% if @item.is_active == true %>
+        <div>¥<%= @item.add_tax_price.to_s(:dalimited) %>(税込)</div>
+        <div>
+          <%= form_with model: @cart_item, url: cart_items_path, method: :post do |f| %>
+            <%= f.hidden_field :item_id, :value => @item.id %>
+            <%= f.select :amount, *[1..10], include_blank: "個数選択" %>
+            <%= f.submit 'カートに入れる' %>
+          <% end %>
+        </div>
+      <% else %>
+        <p>販売停止中</p>
+      <% end %>
+    </div>
+  </div>
+</div>
