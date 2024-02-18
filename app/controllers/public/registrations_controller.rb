@@ -2,15 +2,16 @@
 
 class Public::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
+  before_action :configure_permitted_parameters, if: :devise_controller?
   # before_action :configure_account_update_params, only: [:update]
   def new
   @customer = Customer.new
-end
+  end
 
 def create
   @customer = Customer.new(sign_up_params)
   if @customer.save
-    redirect_to customer_registration_path
+    redirect_to customer_registration_path(@customer)
   else
     render :new
   end
@@ -53,9 +54,9 @@ end
   # protected
 
   # If you have extra params to permit, append them to the sanitizer.
-  def configure_sign_up_params
+  def configure_permitted_parameters
   devise_parameter_sanitizer.permit(:sign_up, keys: [:last_name, :first_name, :first_name_kana, :last_name_kana, :post_cade, :address, :telephone_number])
-end
+  end
   # def configure_sign_up_params
   #   devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
   # end
@@ -67,7 +68,6 @@ end
   def after_sign_up_path_for(resource)
     new_customer_my_page_path
   end
-
   # The path used after sign up.
   # def after_sign_up_path_for(resource)
   #   super(resource)
