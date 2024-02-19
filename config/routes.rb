@@ -12,9 +12,11 @@ Rails.application.routes.draw do
   resources :customers, only: [:new, :create]
    end
 
-
+  get "admin" => "admin/homes#top"
   namespace :admin do
+    resources :customers, only: [:index, :show, :edit, :update]
     resources :genres, only: [:create, :index, :edit, :update]
+    resources :items, only: [:new, :create, :index, :show, :edit, :update]
   end
 
   scope module: :public do
@@ -24,5 +26,4 @@ Rails.application.routes.draw do
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  devise_for :users
 end
