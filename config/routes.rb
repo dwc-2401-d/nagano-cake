@@ -12,5 +12,16 @@ Rails.application.routes.draw do
   resources :customers, only: [:new, :create]
    end
 
+
+  namespace :admin do
+    resources :genres, only: [:create, :index, :edit, :update]
+  end
+
+  scope module: :public do
+    get "customers/my_page" => "customers#show"
+    get "customers/information/edit" => "customers#edit"
+    patch "customers/information" => "customers#update"
+  end
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
