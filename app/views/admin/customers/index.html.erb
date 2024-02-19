@@ -3,16 +3,23 @@
 <table>
   <thead>
     <tr>
+      <th>会員ID</th>
       <th>氏名</th>
       <th>メールアドレス</th>
+      <th>ステータス</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td></td>
+      <td><%= customer.id %></td>
+      <td><%= customer.name %></td><!--customer/showへリンク作る-->
       <td><%= customer.email %></td>
-      <td></td>
+    <% if customer.is_active == true %><!--customerのステータスが有効の時-->
+      <td>有効</td>
+    <% else %><!--それ以外-->
+      <td>退会</td>
+    <% end %><!--ifのend-->
     </tr>
   </tbody>
 </table>
-<% end %>
+<% end %><!--doのend-->
