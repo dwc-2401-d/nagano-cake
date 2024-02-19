@@ -16,9 +16,11 @@ end
   
 
 
-
+  get "admin" => "admin/homes#top"
   namespace :admin do
+    resources :customers, only: [:index, :show, :edit, :update]
     resources :genres, only: [:create, :index, :edit, :update]
+    resources :items, only: [:new, :create, :index, :show, :edit, :update]
   end
 
   scope module: :public do
@@ -28,5 +30,4 @@ end
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  devise_for :users
 end 
