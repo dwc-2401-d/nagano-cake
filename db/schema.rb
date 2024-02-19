@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_02_18_233333) do
+ActiveRecord::Schema.define(version: 2024_02_19_023124) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -46,6 +46,8 @@ ActiveRecord::Schema.define(version: 2024_02_18_233333) do
     t.string "name", default: "", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "customer_id"
+    t.index ["customer_id"], name: "index_addresses_on_customer_id"
   end
 
   create_table "admins", force: :cascade do |t|
@@ -64,6 +66,10 @@ ActiveRecord::Schema.define(version: 2024_02_18_233333) do
     t.integer "amount", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "customer_id"
+    t.integer "item_id"
+    t.index ["customer_id"], name: "index_cart_items_on_customer_id"
+    t.index ["item_id"], name: "index_cart_items_on_item_id"
   end
 
   create_table "customers", force: :cascade do |t|
@@ -99,6 +105,8 @@ ActiveRecord::Schema.define(version: 2024_02_18_233333) do
     t.boolean "is_active", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "genre_id"
+    t.index ["genre_id"], name: "index_items_on_genre_id"
   end
 
   create_table "order_details", force: :cascade do |t|
@@ -107,6 +115,10 @@ ActiveRecord::Schema.define(version: 2024_02_18_233333) do
     t.integer "making_status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "order_id"
+    t.integer "item_id"
+    t.index ["item_id"], name: "index_order_details_on_item_id"
+    t.index ["order_id"], name: "index_order_details_on_order_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -119,8 +131,17 @@ ActiveRecord::Schema.define(version: 2024_02_18_233333) do
     t.integer "status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "customer_id"
+    t.index ["customer_id"], name: "index_orders_on_customer_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "addresses", "customers"
+  add_foreign_key "cart_items", "customers"
+  add_foreign_key "cart_items", "items"
+  add_foreign_key "items", "genres"
+  add_foreign_key "order_details", "items"
+  add_foreign_key "order_details", "orders"
+  add_foreign_key "orders", "customers"
 end
