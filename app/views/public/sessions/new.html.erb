@@ -3,8 +3,8 @@
     <div class='col'>
       <h3>ログイン</h3>
       <h4>会員の方はこちらからログイン</h4>
+       <%= form_with model: @customer, url: customer_session_path do |f| %>
         <table class="table table-borderless">
-        <%= form_with model: @customer, url: customer_session_path do |f| %>
           <tbody>
             <tr>
               <td>メールアドレス</td>
@@ -19,8 +19,8 @@
               <td><%= f.submit "ログイン", class:"btn btn-primary" %></td>
             </tr>
           </tbody>
-        <% end %>
         </table>
+        <% end %>
         <div>
           <h4>会員登録がお済みでない方</h4>
           <div><%= render "public/shared/links" %>から新規登録を行ってください。</div>
