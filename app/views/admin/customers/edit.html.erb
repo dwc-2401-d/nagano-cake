@@ -1,12 +1,12 @@
 <h2><%= @customer.first_name + @customer.last_name %>さんの会員情報編集</h2>
-<%= form_with model: @customer, url: admin_customer_path(@customer, method: :patch do |f| %>
+<%= form_with model: @customer, url: admin_customer_path(@customer), method: :patch do |f| %>
   <table>
     <tr>
-      <th>会員ID</th>
+      <th>会員ID</th><!--ここは保存しなくていいのでform_withより上でいいかもですが見にくくなりそうなのでform_withの中に入れました-->
       <th><%= @customer.id %></th>
     </tr>
     <tr>
-      <th><%= f.label "氏名" %></th>
+      <th>氏名</th>
       <th><%= f.text_field :first_name %></th>
       <th><%= f.text_field :last_name %></th>
     </tr>
@@ -32,7 +32,7 @@
       <th><%= f.text_field :email %></th>
     </tr>
     <tr>
-      <th>会員ステータス</th>
+      <th>会員ステータス</th><!--ボタンで選択式-->
       <th><%= f.radio_button :is_active, "true" %>有効</th>
       <th><%= f.radio_button :is_active, "false" %>退会</th>
     </tr>

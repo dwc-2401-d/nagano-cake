@@ -5,11 +5,11 @@
     <th><%= @customer.id %></th>
   </tr>
   <tr>
-    <th>氏名</th>
+    <th>氏名</th><!--会員詳細は名字と名前の間にスペースがあるので全角スペース入れてます。-->
     <th><%= @customer.first_name %>　<%= @customer.last_name %></th>
   </tr>
   <tr>
-    <th>フリガナ</th>
+    <th>フリガナ</th><!--上に同じ-->
     <th><%= @customer.first_name_kana %>　<%= @customer.last_name_kana %></th>
   </tr>
   <tr>
@@ -30,9 +30,9 @@
   </tr>
   <tr>
     <th>会員ステータス</th>
-  <% if @customer.is_active == true %>
+  <% if @customer.is_active == true %><!--customerのステータスが有効の時-->
     <th>有効</th>
-  <% else %>
+  <% else %><!--それ以外-->
     <th>退会</th>
   <% end %>
   </tr>
