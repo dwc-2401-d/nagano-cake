@@ -21,12 +21,12 @@
             <td><%= item.id %></td>
             <td><%= link_to item.name, admin_item_path(item) %></td>
             <td><%= item.price %></td>
-          <td><%= item.genre.name %></td>
-        <% if item.is_active == true %><!--itemのステータスが有効の時-->
-          <td>販売中</td>
-        <% else %><!--それ以外-->
-          <td>販売停止中</td>
-        <% end %><!--ifのend-->
+            <td><%= item.genre.name %></td>
+          <% if item.is_active == true %><!--itemのステータスが有効の時-->
+            <td>販売中</td>
+          <% else %><!--それ以外-->
+            <td>販売停止中</td>
+          <% end %><!--ifのend-->
           </tr>
         <% end %><!--doのend-->
         </tbody>
