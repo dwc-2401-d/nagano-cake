@@ -16,6 +16,11 @@ end
   
 
 
+  
+  
+  
+  
+
   get "admin" => "admin/homes#top"
   namespace :admin do
     resources :customers, only: [:index, :show, :edit, :update]
