@@ -9,8 +9,7 @@ Rails.application.routes.draw do
   }
    root to: "public/homes#top"
    namespace :public do
-    resources :customers, only: [:new, :create]
-    resources :cart_items, only: [:create, :index, :update, :destroy, :destroy_]
+    
    end
 
   get "admin" => "admin/homes#top"
