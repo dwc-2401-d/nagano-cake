@@ -7,10 +7,14 @@ Rails.application.routes.draw do
   devise_for :admin,skip: [:registrations, :passwords] ,controllers: {
     sessions: 'admin/sessions'
   }
-   root to: "public/homes#top"
-   namespace :public do
-    
-   end
+  
+  root to: "public/homes#top"
+  namespace :public do
+    resources :customers, only: [:new, :create]
+    resources :items, only: [:index, :show]
+    resources :customers, only: [:new, :create]
+    resources :cart_items, only: [:create, :index, :update, :destroy, :destroy_all]
+end
 
   get "admin" => "admin/homes#top"
   namespace :admin do
@@ -26,4 +30,4 @@ Rails.application.routes.draw do
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-end
+end 
