@@ -9,10 +9,10 @@
   <div>
     <% @items.first(4).each do |item| %>
     <div>
-      <%= link_to item_path(item.id) do %><br>
-        <%= image_tag item_image, size: "100x100" %><br>
+      <%= link_to item.name,public_item_path(item)  %><br>
+        <%= image_tag item.item_image, size: "100x100" %><br>
         <%= item.name %><br>
-      <% end %>
+      
       <% if item.is_active %>
         ¥<%= item.price %>
       <% elsif %>
@@ -23,4 +23,4 @@
   </div>
   <%= link_to "全ての商品をみる", public_items_path %>
   </div>
-  <%= paginate @items %>
+  <!--%= paginate @items %>-->
