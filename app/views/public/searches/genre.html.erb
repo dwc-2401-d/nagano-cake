@@ -1,24 +1,29 @@
-<div class="col-3">
-    <%= render 'public/searches/genre' %>
-  </div>
-  <div class="col-9">
-    <div class="row">
-    <h4><strong>検索結果(全<%= @items.count %>件)</strong></h4>
-    </div>
-    <div class="search-items d-flex flex-wrap">
-      <% @items.each do |item| %>
-      <div class="col-3">
-        <%= link_to item_path(item.id) do %><br>
-          <%= image_tag item.image, size: "100x100" %><br>
+<!--genre検索のビューファイルを呼び込む-->
+<%= render 'public/searches/genre' %
+
+<h4><strong>検索結果(全<%= @items.count %>件)</strong></h4>
+ <!--trueの場合　写真　商品名　価格を表示-->
+<div class="search-items">
+  <% @items.each do |item| %>
+    <% if item.is_active %>
+   　　<div>
+        <%= link_to item_path(item.id) do %>
+          <%= image_tag item_image, size: "100x100" %><br>
           <%= item.name %><br>
         <% end %>
-        <% if item.is_active %>
-          ¥<%= item.price %>
-        <% elsif %>
-          <strong class="text-danger">販売停止中</strong>
-        <% end %>
+        ¥<%= item.price %>
       </div>
-      <% end %>
-    </div>
-    <%= paginate @items %>
-  </div>
+    <% else %>
+      <div>
+        <%= link_to item_path(item.id) do %>
+          <%= image_tag item_image, size: "100x100" %><br>
+          <%= item.name %><br>
+        <% end %>
+        <!--flaseの場合-->
+        <strong>販売停止中</strong>
+      </div>
+    <% end %>
+  <% end %>
+  <div><%= link_to "全ての商品をみる", public_items_path %></div>
+</div>
+<%= paginate @items %>
