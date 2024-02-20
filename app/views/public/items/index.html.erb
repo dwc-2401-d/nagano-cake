@@ -1,0 +1,19 @@
+
+   <h4><strong>商品一覧(全<%= @items.count %>件)</strong></h4>
+      <% @items.each do |item| %>
+          <br><%= link_to public_item_path(item.id) do %><br>
+            <br><%= image_tag item.item_image, size: "100x100" %><br>
+            <br><%= item.name %><br>
+          <% end %>
+          <div>
+          <% if item.is_active %>
+            ¥<%= item.price %>
+            </div>
+          <% elsif %>
+          <div>
+            <strong>販売停止中</strong>
+          <% end %>
+        </div>
+        <% end %>
+        <div>
+    </div>
