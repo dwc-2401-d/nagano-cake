@@ -13,8 +13,10 @@ Rails.application.routes.draw do
     resources :customers, only: [:new, :create]
     resources :items, only: [:index, :show]
     resources :customers, only: [:new, :create]
-    resources :cart_items, only: [:create, :index, :update, :destroy, :destroy_all]
-end
+    resources :cart_items, only: [:create, :index, :update, :destroy] do
+      delete :destroy_all, on: :collection
+    end
+  end
 
   get "admin" => "admin/homes#top"
   namespace :admin do

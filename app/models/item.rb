@@ -5,11 +5,9 @@ class Item < ApplicationRecord
   
   has_one_attached :item_image
   
-
-  # 消費税計算
-
-  def add_tax_price
-    (self.price*1.10).round
+  # 商品の税込金額
+  def with_tax_price
+    (price * 1.1).floor
   end
 
   # 商品一覧に関わるバリテーションの設定
@@ -19,6 +17,7 @@ class Item < ApplicationRecord
   validates :introduction, presence: true
   validates :price, presence: true
   validates :item_image, presence: true
+  
 
 end
 

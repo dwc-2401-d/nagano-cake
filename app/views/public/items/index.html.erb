@@ -1,8 +1,8 @@
 
    <h4><strong>商品一覧(全<%= @items.count %>件)</strong></h4>
       <% @items.each do |item| %>
-          <br><%= link_to item_path(item.id) do %><br>
-            <br><%= image_tag item.image, size: "100x100" %><br>
+          <br><%= link_to public_item_path(item.id) do %><br>
+            <br><%= image_tag item.item_image, size: "100x100" %><br>
             <br><%= item.name %><br>
           <% end %>
           <div>
@@ -17,4 +17,3 @@
         <% end %>
         <div>
     </div>
-  
