@@ -3,7 +3,7 @@
     <div class='col'>
       <h3>注文情報入力</h3>
       <%= form_with model: @order, url: confirm_public_orders_path, method: :post do |f| %>
-        <h4>支払い方法</h4>
+        <h4>支払方法</h4>
           <div>
             <%= f.radio_button :payment_method, Order.payment_methods.key(0), checked: true %>  <!-- checked: trueでラジオボタンの初期状態を設定-->
             <%= f.label :payment_method_credit_card, Order.payment_methods_i18n[:credit_card] %>
@@ -14,18 +14,18 @@
           </div>
 
         <h4>お届け先</h4>
-          <%= f.radio_button :address_type, "customer_address", checked: true %>
+          <%= f.radio_button :select_address, "customer_address", checked: true %>
           <%= f.label :address_type, "ご自身の住所" %>
           〒<%= current_customer.post_code + " " + current_customer.address %>
           <%= current_customer.first_name + current_customer.last_name %>
 
           <br>
-          <%= f.radio_button :address_type, [:registered_address] %>
+          <%= f.radio_button :select_address, "registered_address" %>
           <%= f.label :address_type, "登録済住所から選択" %>
-          <%= f.select :address_id, options_from_collection_for_select(Address.all, :id, :address_display) %>
+          <%= f.select :address_id, options_from_collection_for_select(@addresses.all, :id, :address_display) %>
 
           <br>
-          <%= f.radio_button :address_type, "new_address" %>
+          <%= f.radio_button :select_address, "new_address" %>
           <%= f.label :address_type, "新しいお届け先" %>
           <table>
             <tr>
