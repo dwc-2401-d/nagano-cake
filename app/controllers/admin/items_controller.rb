@@ -1,10 +1,10 @@
 class Admin::ItemsController < ApplicationController
-
+# 管理者以外はアクセスできないように
   def new
     @item = Item.new
   end
 
-  def create
+  def create # ifで実行できなかった時の動き
     @item = Item.new(item_params)
     @item.save
     redirect_to admin_item_path(@item.id)
@@ -22,7 +22,7 @@ class Admin::ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-  def update
+  def update # ifで実行できなかった時の動き
     @item = Item.find(params[:id])
     @item.update(item_params)
     redirect_to admin_item_path(@item.id)

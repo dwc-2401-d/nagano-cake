@@ -1,26 +1,31 @@
-<h2>会員一覧</h2>
-<% @customers.each do |customer| %>
-<table>
-  <thead>
-    <tr>
-      <th>会員ID</th>
-      <th>氏名</th>
-      <th>メールアドレス</th>
-      <th>ステータス</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><%= customer.id %></td>
-      <td><%= customer.name %></td><!--customer/showへリンク作る-->
-      <!--first_name last_nameの形に変える--
-      <td><%= customer.email %></td>
-    <% if customer.is_active == true %><!--customerのステータスが有効の時-->
-      <td>有効</td>
-    <% else %><!--それ以外-->
-      <td>退会</td>
-    <% end %><!--ifのend-->
-    </tr>
-  </tbody>
-</table>
-<% end %><!--doのend-->
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h2>会員一覧</h2>
+      <% @customers.each do |customer| %>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>会員ID</th>
+              <th>氏名</th>
+              <th>メールアドレス</th>
+              <th>ステータス</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= customer.id %></td>
+              <td><%=link_to customer.first_name + customer.last_name, admin_customer_path(customer.id) %></td>
+              <td><%= customer.email %></td>
+            <% if customer.is_active == true %><!--customerのステータスが有効の時-->
+              <td>有効</td>
+            <% else %><!--それ以外-->
+              <td>退会</td>
+            <% end %><!--ifのend-->
+            </tr>
+          </tbody>
+        </table>
+      <% end %><!--doのend-->
+    </div>
+  </div>
+</div>

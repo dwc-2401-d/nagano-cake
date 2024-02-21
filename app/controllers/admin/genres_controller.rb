@@ -1,6 +1,6 @@
 class Admin::GenresController < ApplicationController
-
-  def create
+# 管理者以外はアクセスできないように
+  def create # ifで実行できなかった時の動き
     @genre = Genre.new(genre_params)
     @genre.save
     redirect_to admin_genres_path
@@ -15,7 +15,7 @@ class Admin::GenresController < ApplicationController
     @genre = Genre.find(params[:id])
   end
 
-  def update
+  def update # ifで実行できなかった時の動き
     @genre = Genre.find(params[:id])
     @genre.update(genre_params)
     redirect_to admin_genres_path
