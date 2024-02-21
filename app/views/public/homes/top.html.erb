@@ -1,26 +1,32 @@
+<%= render 'public/searches/genre', genres: @genres %>
+
+<h1>Welcome!</h1>
 <div>
-  <%= render 'public/searches/genre' %>
+    <p>ようこそ、ながのCAKEへ！<br>
+        このサイトは、ケーキ販売のECサイトになります。<br>
+        会員ではない方も商品の閲覧はできますが、<br>
+        購入には会員登録が必要になります。
+    </p>
 </div>
+
 <div>
+  <h2>新着商品</h2>
   <div>
-    <h4><strong>検索結果(全<%= @items.count %>件)</strong></h4>
-  </div>
   <!--first(4) 4つのアイテムに対してループし、flaseの場合は販売停止の表示にする-->
-  <div>
     <% @items.first(4).each do |item| %>
-    <div>
-      <%= link_to item.name,public_item_path(item)  %><br>
-        <%= image_tag item.item_image, size: "100x100" %><br>
-        <%= item.name %><br>
-      
-      <% if item.is_active %>
-        ¥<%= item.price %>
-      <% elsif %>
-        <strong>販売停止中</strong>
-      <% end %>
-    </div>
+      <div>
+        <%= link_to item.name,public_item_path(item) %>
+        <%= image_tag item.item_image, size: "150x150" %>
+        <div>
+          <p><%= item.name %></p>
+          <% if item.is_active %>
+            <p>¥ <%= item.price.to_s(:delimited) %></p>
+          <% else %>
+            <p>販売停止中</p>
+          <% end %>
+        </div>
+      </div>
     <% end %>
   </div>
   <%= link_to "全ての商品をみる", public_items_path %>
-  </div>
-  <!--%= paginate @items %>-->
+</div>
