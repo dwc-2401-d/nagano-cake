@@ -11,12 +11,15 @@ Rails.application.routes.draw do
     sessions: 'admin/sessions'
   }
 
+  root to: "public/homes#top"
   namespace :public do
-  get"home/about" => "homes#about", as: "about"
-  resources :customers, only: [:new, :create]
-  resources :items, only: [:index, :show] do
-  get 'genre_search', on: :collection, to: 'searches#genre_search'
-  end
+    resources :customers, only: [:new, :create]
+    resources :items, only: [:index, :show]
+    resources :customers, only: [:new, :create]
+    resources :addresses, only: [:index, :create, :edit, :update, :destroy]
+    resources :cart_items, only: [:create, :index, :update, :destroy] do
+      delete :destroy_all, on: :collection
+    end
   end
 
   get "admin" => "admin/homes#top"

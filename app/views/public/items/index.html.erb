@@ -1,0 +1,18 @@
+<div class='container'>
+  <div class='row'>
+    <div class='col'>
+      <h4>商品一覧(全<%= @items.count %>件)</h4>
+        <% @items.each do |item| %>
+          <%= link_to public_item_path(item.id) do %>
+            <%= image_tag item.item_image, size: "150x100" %>
+            <%= item.name %>
+          <% end %>
+          <% if item.is_active %>
+            ¥<%= item.price %>
+          <% elsif %>
+            販売停止中
+          <% end %>
+        <% end %>
+    </div>
+  </div>
+</div>
