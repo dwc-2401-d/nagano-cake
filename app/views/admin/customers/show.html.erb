@@ -1,41 +1,47 @@
-<h2><%= @customer.first_name + @customer.last_name %>さんの会員詳細</h2>
-<table>
-  <tr>
-    <th>会員ID</th>
-    <th><%= @customer.id %></th>
-  </tr>
-  <tr>
-    <th>氏名</th><!--会員詳細は名字と名前の間にスペースがあるので全角スペース入れてます。-->
-    <th><%= @customer.first_name %>　<%= @customer.last_name %></th>
-  </tr>
-  <tr>
-    <th>フリガナ</th><!--上に同じ-->
-    <th><%= @customer.first_name_kana %>　<%= @customer.last_name_kana %></th>
-  </tr>
-  <tr>
-    <th>郵便番号</th>
-    <th><%= @customer.post_code %></th>
-  </tr>
-  <tr>
-    <th>住所</th>
-    <th><%= @customer.address %></th>
-  </tr>
-  <tr>
-    <th>電話番号</th>
-    <th><%= @customer.telephone_number %></th>
-  </tr>
-  <tr>
-    <th>メールアドレス</th>
-    <th><%= @customer.email %></th>
-  </tr>
-  <tr>
-    <th>会員ステータス</th>
-  <% if @customer.is_active == true %><!--customerのステータスが有効の時-->
-    <th>有効</th>
-  <% else %><!--それ以外-->
-    <th>退会</th>
-  <% end %>
-  </tr>
-</table>
-<%= link_to "編集する", edit_admin_customer_path(@customer) %>
-<!--表示しているcustomerの注文履歴一覧へのリンク作る-->
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h5><%= @customer.first_name + @customer.last_name %>さんの会員詳細</h5>
+      <table>
+        <tr>
+          <th>会員ID</th>
+          <th><%= @customer.id %></th>
+        </tr>
+        <tr>
+          <th>氏名</th><!--会員詳細は名字と名前の間にスペースがあるので全角スペース入れてます。-->
+          <th><%= @customer.first_name %>　<%= @customer.last_name %></th>
+        </tr>
+        <tr>
+          <th>フリガナ</th><!--上に同じ-->
+          <th><%= @customer.first_name_kana %>　<%= @customer.last_name_kana %></th>
+        </tr>
+        <tr>
+          <th>郵便番号</th>
+          <th><%= @customer.post_code %></th>
+        </tr>
+        <tr>
+          <th>住所</th>
+          <th><%= @customer.address %></th>
+        </tr>
+        <tr>
+          <th>電話番号</th>
+          <th><%= @customer.telephone_number %></th>
+        </tr>
+        <tr>
+          <th>メールアドレス</th>
+          <th><%= @customer.email %></th>
+        </tr>
+        <tr>
+          <th>会員ステータス</th>
+        <% if @customer.is_active == true %><!--customerのステータスが有効の時-->
+          <th class="text-success">有効</th>
+        <% else %><!--それ以外-->
+          <th class="text-secondary">退会</th>
+        <% end %>
+        </tr>
+      </table>
+      <%= link_to "編集する", edit_admin_customer_path(@customer), class: "btn btn-success" %>
+      <!--表示しているcustomerの注文履歴一覧へのリンク作る-->
+    </div>
+  </div>
+</div>
