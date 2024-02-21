@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   root to: "public/homes#top"
   namespace :public do
     resources :customers, only: [:new, :create]
-    resources :items, only: [:index, :show]
+    resources :items, only: [:index, :show] 
     resources :customers, only: [:new, :create]
     resources :addresses, only: [:index, :create, :edit, :update, :destroy]
     resources :cart_items, only: [:create, :index, :update, :destroy] do
