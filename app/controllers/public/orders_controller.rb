@@ -11,7 +11,7 @@ class Public::OrdersController < ApplicationController
     @order = Order.new(order_params)
     @selected_pay_method = params[:order][:pey_method]  # 支払方法のパラメータの値を取得
     @cart_items_price = @cart_items.sum { |cart_item| cart_item.item.price * cart_item.amount }  # 商品金額合計
-    @total_price = @shipping_cost + @cart_items_price  # 請求金額
+    @total_payment = @shipping_cost + @cart_items_price  # 請求金額
 
     @address_type = params[:order][:select_address]
     # 配送先の分岐
@@ -34,14 +34,14 @@ class Public::OrdersController < ApplicationController
   end
 
   def create
-    @cart_items = current_customer.cart_item.all  # カート内商品の情報を取得
+    @cart_items = current_customer.cart_items.all  # カート内商品の情報を取得
     @order = Order.new(order_params)
     @order.save
 
     # OrderDetaolに渡す値を設定
     @cart_items.each do |cart_item|
       @order_details = OrderDetail.new
-      @order_details.order_id = order.id
+      @order_details.order_id = @order.id
       @order_details.item_id = cart_item.item.id
       @order_details.price = cart_item.item.with_tax_price
       @order_details.amount = cart_item.amount
@@ -49,6 +49,7 @@ class Public::OrdersController < ApplicationController
       @order_details.save!
     end
 
+    CartItem.destroy_all
     redirect_to thanks_public_orders_path
   end
 
@@ -65,6 +66,6 @@ class Public::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:customer_id, :payment_method, :post_code, :address, :name, :total_price, :shipping_cost, :status)
+    params.require(:order).permit(:customer_id, :payment_method, :post_code, :address, :name, :total_payment, :shipping_cost, :status)
   end
 end
