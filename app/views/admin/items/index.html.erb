@@ -1,27 +1,36 @@
-<h2>商品一覧</h2>
-<table>
-  <thead>
-    <tr>
-      <th>商品ID</th>
-      <th>商品名</th>
-      <th>税抜価格</th>
-      <th>ジャンル</th>
-      <th>ステータス</th>
-    </tr>
-  </thead>
-  <tbody>
-  <% @items.each do |item| %>
-    <tr>
-      <td><%= item.id %></td>
-      <td><%= link_to item.name, admin_item_path(item) %></td>
-      <td><%= item.price %></td>
-      <td><%= item.genre.name %></td>
-    <% if item.is_active == true %><!--itemのステータスが有効の時-->
-      <td>販売中</td>
-    <% else %><!--それ以外-->
-      <td>販売停止中</td>
-    <% end %><!--ifのend-->
-    </tr>
-  <% end %><!--doのend-->
-  </tbody>
-</table>
+<div class='container'>
+  <div class='row'>
+    <div class='col'>
+      <h3>商品一覧</h3>
+      <%= link_to new_admin_item_path, class: 'nav-link' do %>
+        <button type="button" class="btn btn-outline-secondary"><i class="fa-solid fa-plus"></i> 新規登録</button>
+      <% end %>
+      <table>
+        <thead>
+          <tr>
+            <th>商品ID</th>
+            <th>商品名</th>
+            <th>税抜価格</th>
+            <th>ジャンル</th>
+            <th>ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @items.each do |item| %>
+          <tr>
+            <td><%= item.id %></td>
+            <td><%= link_to item.name, admin_item_path(item) %></td>
+            <td><%= item.price %></td>
+            <td><%= item.genre.name %></td>
+          <% if item.is_active == true %><!--itemのステータスが有効の時-->
+            <td>販売中</td>
+          <% else %><!--それ以外-->
+            <td>販売停止中</td>
+          <% end %><!--ifのend-->
+          </tr>
+        <% end %><!--doのend-->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
