@@ -1,6 +1,6 @@
-<div class='container'>
-  <div class='row'>
-    <div class='col'>
+<div class="container p-4">
+  <div class="row">
+    <div class="col">
       <h3>注文履歴一覧</h3>
       <table class="table">
         <tr>
@@ -28,7 +28,7 @@
           </td>
           <td><%= number_with_delimiter(order.total_payment) %></td>
           <td><!--<= order.status_i18n %>--></td> <!-- 管理者側のorderが必要になるためコメントアウト -->
-          <td><%= link_to "表示する", public_order_path(order.id), class: "btn btn-info" %></td>
+          <td><%= link_to "表示する", public_order_path(order.id), class: "btn btn-primary" %></td>
         </tr>
       <% end %>
       </table>
