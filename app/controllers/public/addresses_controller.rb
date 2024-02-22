@@ -1,7 +1,8 @@
 class Public::AddressesController < ApplicationController
+  before_action :authenticate_customer!
 
   def index
-    @addresses = Address.all
+    @addresses = Address.where(customer_id: current_customer.id)
     @address = Address.new
   end
 
@@ -22,8 +23,8 @@ class Public::AddressesController < ApplicationController
   end
 
   def destroy
-     @address = Address.find(params[:id])
-     @address.destroy
+     @address = Address.where(customer_id: current_customer.id)
+     @address.destroy.find(params[:id])
      redirect_to public_addresses_path
   end
 
@@ -31,7 +32,7 @@ class Public::AddressesController < ApplicationController
   private
 
   def address_params
-    params.require(:address).permit(:post_code, :address, :name)
+    params.require(:address).permit(:post_code, :address, :name, :customer_id)
   end
 
 end

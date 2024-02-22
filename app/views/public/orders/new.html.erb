@@ -27,7 +27,7 @@
           <br>
           <%= f.radio_button :select_address, "new_address" %>
           <%= f.label :address_type, "新しいお届け先" %>
-          <table>
+          <table class="table">
             <tr>
               <td>郵便番号（ハイフンなし）</td>
               <td><%= f.text_field :post_code, placeholder: "0000000" %></td>

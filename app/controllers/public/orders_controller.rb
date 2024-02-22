@@ -1,8 +1,9 @@
 class Public::OrdersController < ApplicationController
+  before_action :authenticate_customer!
 
   def new
     @order = Order.new
-    @addresses = Address.all
+    @addresses = Address.where(customer_id: current_customer.id)
   end
 
   def confirm
@@ -38,7 +39,7 @@ class Public::OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.save
 
-    # OrderDetaolに渡す値を設定
+    # OrderDetailに渡す値を設定
     @cart_items.each do |cart_item|
       @order_details = OrderDetail.new
       @order_details.order_id = @order.id
@@ -54,7 +55,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
-    @orders = Order.all
+    @orders = Order.where(customer_id: current_customer.id)
   end
 
   def show
