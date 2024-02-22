@@ -15,7 +15,9 @@
               <% end %>
             </li>
             <li class="nav-item">
+              <%= link_to admin_customers_path, class: 'nav-link' do %>
               <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-users"></i> 会員一覧</button>
+              <% end %>
             </li>
             <li class="nav-item">
               <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-receipt"></i> 注文履歴一覧</button>
@@ -26,7 +28,9 @@
               <% end %>
             </li>
             <li class="nav-item">
+              <%= link_to destroy_admin_session_path, method: :delete, class: 'nav-link' do %>
               <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-right-from-bracket"></i> ログアウト</button>
+              <% end %>
             </li>
           <% else %>
             <li class="nav-item">
