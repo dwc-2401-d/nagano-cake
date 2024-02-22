@@ -1,10 +1,10 @@
 <div class="container">
   <div class="row">
-    <div class="col">
-      <h2>会員一覧</h2>
+    <div class="col-12 mt-4">
+      <h5>会員一覧</h5>
       <% @customers.each do |customer| %>
-        <table class="table">
-          <thead>
+        <table class="table table-borderless bg-light mt-4">
+          <thead class="border bg-success">
             <tr>
               <th>会員ID</th>
               <th>氏名</th>
@@ -18,9 +18,9 @@
               <td><%=link_to customer.first_name + customer.last_name, admin_customer_path(customer.id) %></td>
               <td><%= customer.email %></td>
             <% if customer.is_active == true %><!--customerのステータスが有効の時-->
-              <td>有効</td>
+              <td class="text-success">有効</td>
             <% else %><!--それ以外-->
-              <td>退会</td>
+              <td class="text-secondary">退会</td>
             <% end %><!--ifのend-->
             </tr>
           </tbody>
