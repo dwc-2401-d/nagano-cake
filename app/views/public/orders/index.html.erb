@@ -1,36 +1,39 @@
 <div class="container p-4">
   <div class="row">
     <div class="col">
-      <h3>注文履歴一覧</h3>
-      <table class="table">
-        <tr>
-          <td>注文日</td>
-          <td>配送先</td>
-          <td>注文商品</td>
-          <td>支払い金額</td>
-          <td>ステータス</td>
-          <td>注文詳細</td>
-        </tr>
+      <h3 class="mb-4">注文履歴一覧</h3>
+
+      <table class="table table-bordered">
+        <thead style="background-color: #e9ecef;">
+          <tr>
+            <td>注文日</td>
+            <td>配送先</td>
+            <td>注文商品</td>
+            <td>支払い金額</td>
+            <td>ステータス</td>
+            <td>注文詳細</td>
+          </tr>
+        </thead>
+        <tbody>
         <% @orders.each do |order| %>
-        <tr>
-          <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
-          <td>
-            〒<%= order.post_code %>
-            <%= order.address %>
-            <%= order.name %>
-          </td>
-          <td>
-            <ul class="list-untyled">
-              <% order.order_details.each do |order_detail| %>
-                <li><%= order_detail.item.name %></li>
-              <% end %>
-            </ul>
-          </td>
-          <td><%= number_with_delimiter(order.total_payment) %></td>
-          <td><!--<= order.status_i18n %>--></td> <!-- 管理者側のorderが必要になるためコメントアウト -->
-          <td><%= link_to "表示する", public_order_path(order.id), class: "btn btn-primary" %></td>
-        </tr>
-      <% end %>
+          <tr>
+            <td class="align-middle"><%= order.created_at.strftime('%Y/%m/%d') %></td>
+            <td class="align-middle">
+              〒<%= order.post_code %><br>
+              <%= order.address %><br>
+              <%= order.name %>
+            </td>
+            <td class="align-middle">
+                <% order.order_details.each do |order_detail| %>
+                  <div class="align-middle"><%= order_detail.item.name %></div>
+                <% end %>
+            </td>
+            <td class="align-middle"><%= number_with_delimiter(order.total_payment) %></td>
+            <td class="align-middle"><!--<= order.status_i18n %>--></td> <!-- 管理者側のorderが必要になるためコメントアウト -->
+            <td class="align-middle"><%= link_to "表示する", public_order_path(order.id), class: "btn btn-primary" %></td>
+          </tr>
+        <% end %>
+        </tbody>
       </table>
     </div>
   </div>
