@@ -11,44 +11,54 @@
           <% if admin_signed_in? %>
             <li class="nav-item">
               <%= link_to admin_items_path, class: 'nav-link' do %>
-              <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-cake-candles"></i> 商品一覧</button>
+                <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-cake-candles"></i> 商品一覧</button>
               <% end %>
             </li>
             <li class="nav-item">
               <%= link_to admin_customers_path, class: 'nav-link' do %>
-              <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-users"></i> 会員一覧</button>
+                <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-users"></i> 会員一覧</button>
               <% end %>
             </li>
             <li class="nav-item">
-              <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-receipt"></i> 注文履歴一覧</button>
+              <!--<= link_to _path, class: 'nav-link' do %>  ルートが出来次第追加-->
+                <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-receipt"></i> 注文履歴一覧</button>
+              <!--< end %>-->
             </li>
             <li class="nav-item">
               <%= link_to admin_genres_path, class: 'nav-link' do %>
-              <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-list-ul"></i> ジャンル一覧</button>
+                <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-list-ul"></i> ジャンル一覧</button>
               <% end %>
             </li>
             <li class="nav-item">
+<<<<<<< HEAD
               <%= link_to destroy_admin_session_path, method: :delete, class: 'nav-link' do %>
               <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-right-from-bracket"></i> ログアウト</button>
               <% end %>
+=======
+              <!--<= link_to _path, class: 'nav-link' do %>  ルートが出来次第追加-->
+                <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-right-from-bracket"></i> ログアウト</button>
+              <!--< end %>-->
+>>>>>>> origin/develop
             </li>
           <% else %>
             <li class="nav-item">
-              <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-link"></i> About</button>
+              <!--<= link_to _path, class: 'nav-link' do %>  ルートが出来次第追加-->
+                <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-link"></i> About</button>
+              <!--< end %>-->
             </li>
             <li class="nav-item">
               <%= link_to public_items_path, class: 'nav-link' do %>
-              <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-cake-candles"></i> 商品一覧</button>
+                <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-cake-candles"></i> 商品一覧</button>
               <% end %>
             </li>
             <li class="nav-item">
               <%= link_to new_customer_registration_path, class: 'nav-link' do %>
-              <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-user-plus"></i> 新規登録</button>
+                <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-user-plus"></i> 新規登録</button>
               <% end %>
             </li>
             <li class="nav-item">
               <%= link_to admin_session_path, class: 'nav-link' do %>
-              <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-right-to-bracket"></i> ログイン</button>
+                <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-right-to-bracket"></i> ログイン</button>
               <% end %>
             </li>
           <% end %>
