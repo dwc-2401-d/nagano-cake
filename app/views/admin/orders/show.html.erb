@@ -15,7 +15,7 @@
           <th>配送先</th>
           <th>
             〒<%= @order.post_code %> <%= @order.address %><br>
-            <%= order.name %>
+            <%= @order.name %>
           </th>
         </tr>
         <tr>
@@ -24,13 +24,14 @@
         </tr>
         <tr>
           <th>注文ステータス</th>
-        <%= form_with mmodel: @order, url: admin_order_path(@order), method: :patch do |f| %>
+        <%= form_with mmodel: @order, url: admin_order_path(@order), method: :patch, local: true do |f| %>
         <!--ステータスの値（整数値）が表示される-->
         <%#= f.select :status, Order.statuses_i18n.keys.map %>
         <!--ステータスの値（enumで定義された値）が表示される-->
         <!--.keys.map は、Rubyのハッシュからキーを取り出して配列に変換する処理-->
-          <th><%= f.select :status, Order.statuses.keys.map { |status| [I18n.t("enums.order.status.#{status}"), status] } %></th>
+          <th><%= f.select :status, Order.statuses_i18n.invert %></th>
           <th><%= f.submit "更新" %></th>
+        <% end %>
         </tr>
       </table>
       <table>
@@ -54,7 +55,7 @@
             <!--引数として order_detail.order.id および order_detail.id を渡しています。これにより、注文詳細の親である注文と、注文詳細自体のIDが取得されます。
                 ルーティングの設定により、これらのIDが埋め込まれ、対応するパスが生成されます。
                 例えば、order_detail.order.id が 1 で order_detail.id が 2 の場合、admin_order_order_detail_path(1, 2) は /admin/orders/1/order_details/2 といったパスを生成することになります。-->
-          <%= form_with model: order_detail, url: admin_order_order_detail_path(order_detail.order.id, order_detail.id), method: :patch do |f| %>
+          <%= form_with model: order_detail, url: admin_order_order_detail_path(order_detail.order.id, order_detail.id), method: :patch, local: true do |f| %>
             <td><%= f.select :making_status, OrderDetail.making_statuses_i18n.invert %></td>
             <td><%= f.submit "更新", class: "btn btn-success" %></td>
           <% end %><!--form_withのend-->
@@ -69,11 +70,11 @@
         </tr>
         <tr>
           <th>送料</th>
-          <th>¥</th>
+          <th>¥<%= @order.shipping_cost %></th>
         </tr>
         <tr>
           <th>請求金額合計</th>
-          <th>¥<%= @order_product_total + %></th>
+          <th>¥<%= @order_product_total + @order.shipping_cost %></th>
         </tr>
       </table>
     </div>
