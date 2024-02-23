@@ -16,7 +16,9 @@
           <tr>
             <td><%= order.created_at.strftime("%Y/%m/%d %H:%M:%S") %></td>
             <td><%= order.name %></td>
-            <td><%= order.cart_item.amount %></td>
+            <!--order_details内の各order_detailのamountが合計される-->
+            <% total_amount = order.order_details.sum{|item| item.amount} %>
+            <td><%= total_amount %></td>
             <td><%= order.status_i18n %></td>
           </tr>
         <% end %>

@@ -1,4 +1,4 @@
-<%= render 'public/searches/genre', genres: @genres %>
+<% # render 'public/searches/genre', genres: @genres %>
 
 <h1>Welcome!</h1>
 <div>
@@ -20,7 +20,7 @@
         <div>
           <p><%= item.name %></p>
           <% if item.is_active %>
-            <p>¥ <%= item.price.to_s(:delimited) %></p>
+            <p>¥ <%= item.price %></p>
           <% else %>
             <p>販売停止中</p>
           <% end %>
