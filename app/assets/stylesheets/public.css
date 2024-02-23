@@ -1,0 +1,30 @@
+.photo-container {
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+}
+
+.overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.5); /* オーバーレイの背景色 */
+  padding: 20px;
+}
+overlay-text {
+  margin: 500px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  text-align: center;
+  font-size: 18px;
+  color: #333;
+  writing-mode: horizontal-tb;
+}
