@@ -1,7 +1,11 @@
-<div class='container'>
-  <div class='row'>
-    <div class='col'>
-        <%= image_tag @item.item_image, size: "100x100" %>
+<div class="container p-4">
+  <div class="row">
+    <div class="col">
+      <div class="row text-center text-xs-center text-sm-left text-md-left mt-5">
+        <div class="col-md-5 offset-md-1 pl-5">
+          <%= image_tag @item.item_image, size: "330x220" %>
+        </div>
+        
         <h3><%= @item.name %></h3>
         <h5><%= @item.introduction %></h5>
         <% if @item.is_active == true %>
@@ -16,6 +20,7 @@
         <% else %>
           <p>販売停止中</p>
         <% end %>
+      </div>
     </div>
   </div>
 </div>
