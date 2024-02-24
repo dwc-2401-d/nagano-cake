@@ -4,8 +4,11 @@ class Admin::GenresController < ApplicationController
 
   def create # ifで実行できなかった時の動き
     @genre = Genre.new(genre_params)
-    @genre.save
-    redirect_to admin_genres_path
+    if @genre.save
+      redirect_to admin_genres_path
+    else
+      redirect_to request.referer
+    end
   end
 
   def index
@@ -17,10 +20,13 @@ class Admin::GenresController < ApplicationController
     @genre = Genre.find(params[:id])
   end
 
-  def update # ifで実行できなかった時の動き
+  def update
     @genre = Genre.find(params[:id])
-    @genre.update(genre_params)
-    redirect_to admin_genres_path
+    if @genre.update(genre_params)
+      redirect_to admin_genres_path
+    else
+      redirect_to request.referer
+    end
   end
 
   private

@@ -15,8 +15,8 @@ class Public::ItemsController < ApplicationController
 # 購入後のカートへ@cart_itemに変数を代入
 # CartItemで新しいオブジェクトを作成する。
 
-def show
-  @item = Item.find(params[:id])
-  @cart_item = CartItem.new 
-end 
+  def show
+    @item = Item.find(params[:id])
+    @cart_item = CartItem.new 
+  end 
 end 
