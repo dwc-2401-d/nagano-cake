@@ -11,7 +11,7 @@ class Public::OrdersController < ApplicationController
     @shipping_cost = 800  # 送料は固定
     @order = Order.new(order_params)
     @selected_pay_method = params[:order][:pey_method]  # 支払方法のパラメータの値を取得
-    @cart_items_price = @cart_items.sum { |cart_item| cart_item.item.price * cart_item.amount }  # 商品金額合計
+    @cart_items_price = @cart_items.sum { |cart_item| cart_item.item.with_tax_price * cart_item.amount }  # 商品金額合計
     @total_payment = @shipping_cost + @cart_items_price  # 請求金額
 
     @address_type = params[:order][:select_address]
@@ -59,6 +59,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def show
+    @cart_item = CartItem.where(customer_id: current_customer.id) 
     @order = Order.find(params[:id])
     @order_details= OrderDetail.where(order_id: @order.id)
   end

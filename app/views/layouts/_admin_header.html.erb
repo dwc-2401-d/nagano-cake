@@ -20,7 +20,7 @@
               <% end %>
             </li>
             <li class="nav-item">
-              <%= link_to public_about_path, class: 'nav-link' do %>
+              <%= link_to admin_path, class: 'nav-link' do %>
                 <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-receipt"></i> 注文履歴一覧</button>
               <% end %>
             </li>
@@ -36,9 +36,9 @@
             </li>
           <% else %>
             <li class="nav-item">
-              <!--<= link_to _path, class: 'nav-link' do %>  ルートが出来次第追加-->
+              <%= link_to public_about_path, class: 'nav-link' do %>
                 <button type="button" class="btn btn-outline-light"><i class="fa-solid fa-link"></i> About</button>
-              <!--< end %>-->
+              <% end %>
             </li>
             <li class="nav-item">
               <%= link_to public_items_path, class: 'nav-link' do %>
