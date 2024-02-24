@@ -1,8 +1,8 @@
 class Public::SearchesController < ApplicationController
   
   def genre_search
-    @genre_id = params[:genre_id]
-    @item = Item.where(genre_id: @genre_id)
-    @genre = Genre.all
+    @genre = Genre.find(params[:id])
+    @items = Item.where(genre_id: @genre.id)
+    @genres = Genre.all
   end 
 end 

@@ -1,0 +1,22 @@
+<!--genre検索のビューファイルを呼び込む-->
+<%= render 'public/searches/genre_search' %>
+
+<h4><%= @genre.name %>(全<%= @items.count %>件)</h4>
+ <!--trueの場合　写真　商品名　価格を表示-->
+<div>
+  <% @items.each do |item| %>
+    <div>
+      <%= link_to public_item_path(item.id) do %>
+        <%= image_tag item.item_image, size: "100x100" %><br>
+        <%= item.name %><br>
+      <% end %>
+    </div>
+    <% if item.is_active == true %>
+      <p>¥<%= item.price %></p>
+    <% else %> <!--flaseの場合-->
+      <p>販売停止中</p>
+    <% end %>
+  <% end %>
+  <div><%= link_to "全ての商品をみる", public_items_path %></div>
+</div>
+<!--<= paginate @items %>-->
