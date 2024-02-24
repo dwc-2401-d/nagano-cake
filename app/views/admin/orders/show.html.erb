@@ -5,7 +5,7 @@
       <table>
         <tr>
           <th>購入者</th>
-          <th><%= link_to @order.name, admin_customer_path(@order) %></th>
+          <th><%= link_to @order.name, admin_customer_path(@order.customer_id) %></th>
         </tr>
         <tr>
           <th>注文日</th>
@@ -24,13 +24,10 @@
         </tr>
         <tr>
           <th>注文ステータス</th>
-        <%= form_with mmodel: @order, url: admin_order_path(@order), method: :patch, local: true do |f| %>
-        <!--ステータスの値（整数値）が表示される-->
-        <%#= f.select :status, Order.statuses_i18n.keys.map %>
+        <%= form_with model: @order, url: admin_order_path(@order), method: :patch, local: true do |f| %>
         <!--ステータスの値（enumで定義された値）が表示される-->
-        <!--.keys.map は、Rubyのハッシュからキーを取り出して配列に変換する処理-->
           <th><%= f.select :status, Order.statuses_i18n.invert %></th>
-          <th><%= f.submit "更新" %></th>
+          <th><%= f.submit "更新", class: "btn btn-success" %></th>
         <% end %>
         </tr>
       </table>
