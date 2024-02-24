@@ -6,25 +6,47 @@
 
   align-items: center;
 
+  width: 1400px;
+
+  height: 350px;
+  
+  object-fit: cover;
+
+  overflow: hidden; /* 領域からはみ出した部分を表示しないようにします */
+
 }
 
 .overlay {
+  margin-left: 300px; /* ずらしたい距離に合わせて値を調整してください */
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 20%;
+  right: 40%;
   transform: translate(-50%, -50%);
   background-color: rgba(255, 255, 255, 0.5); /* オーバーレイの背景色 */
   padding: 20px;
 }
 overlay-text {
-  margin: 500px;
-  top: 50%;
+  margin-left: 250px;
+  position: absolute;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: rgba(255, 255, 255, 0.8);
-  padding: 20px;
+  padding: 30px;
   text-align: center;
-  font-size: 18px;
+  font-size: 14px;
   color: #333;
   writing-mode: horizontal-tb;
+}
+.stylish-container {
+  background-color: #ffcbcc; opacity:0.16;
+  padding: 5px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.stylish-title {
+  color: #330000;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
 }
