@@ -1,18 +1,18 @@
 <div class="container">
   <div class="row">
-    <div class="col">
-      <h5>管理者ログイン</h5>
+    <div class="col-lg-12 mt-4">
+      <h5 class="text-center mb-3" style="font-weight: bold; color: #a07b35; font-family: serif; ">管理者ログイン</h5>
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <table>
-        <tr class="field">
+      <table class="mt-4">
+        <tr class="form-group">
           <th><%= f.label :email,"メールアドレス" %></th>
           <th><%= f.email_field :email, autofocus: true, autocomplete: "email" %></th>
         </tr>
-        <tr class="field">
+        <tr class="form-group">
           <th><%= f.label :password,"パスワード" %></th>
           <th><%= f.password_field :password, autocomplete: "current-password" %></th>
         </tr>
-        <tr class="actions">
+        <tr class="form-group">
           <th></th><!--ボタンを右にずらす用のタグです-->
           <th><%= f.submit "ログイン", class: "btn btn-primary" %></th>
         </tr>

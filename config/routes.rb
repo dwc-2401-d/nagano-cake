@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   root to: "public/homes#top"
   namespace :public do
     resources :customers, only: [:new, :create]
-    resources :items, only: [:index, :show] 
+    resources :items, only: [:index, :show]
     resources :customers, only: [:new, :create]
     resources :addresses, only: [:index, :create, :edit, :update, :destroy]
     resources :orders, only: [:new, :create, :index, :show] do
@@ -28,6 +28,9 @@ Rails.application.routes.draw do
     resources :customers, only: [:index, :show, :edit, :update]
     resources :genres, only: [:create, :index, :edit, :update]
     resources :items, only: [:new, :create, :index, :show, :edit, :update]
+    resources :orders, only: [:show, :update] do
+      resources :order_details, only: [:update]
+    end
   end
 
   scope module: :public do
