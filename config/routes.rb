@@ -38,6 +38,7 @@ Rails.application.routes.draw do
       resources :order_details, only: [:update]
     end
   end
+  
   scope module: :public do
     get "customers/my_page" => "customers#show"
     get "customers/information/edit" => "customers#edit"
