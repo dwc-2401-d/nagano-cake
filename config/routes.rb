@@ -27,7 +27,7 @@ Rails.application.routes.draw do
     resources :cart_items, only: [:create, :index, :update, :destroy] do
       delete :destroy_all, on: :collection
     end
-
+  end
 
   get "admin" => "admin/homes#top"
   namespace :admin do
@@ -46,5 +46,3 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
-end
-

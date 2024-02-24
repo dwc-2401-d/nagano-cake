@@ -1,5 +1,7 @@
 class Admin::CustomersController < ApplicationController
 # 管理者以外はアクセスできないように
+  before_action :authenticate_admin!
+
   def index
     @customers = Customer.all
   end 

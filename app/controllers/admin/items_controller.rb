@@ -1,5 +1,7 @@
 class Admin::ItemsController < ApplicationController
 # 管理者以外はアクセスできないように
+  before_action :authenticate_admin!
+
   def new
     @item = Item.new
   end
