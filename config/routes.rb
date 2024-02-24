@@ -18,6 +18,8 @@ Rails.application.routes.draw do
       post :confirm, on: :collection
       get :thanks, on: :collection
     end
+    get 'customers/unsubscribe' => 'customers#unsubscribe'
+    patch '/customers/withdraw' => 'customers#withdraw'
     resources :cart_items, only: [:create, :index, :update, :destroy] do
       delete :destroy_all, on: :collection
     end
