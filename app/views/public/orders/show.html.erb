@@ -65,9 +65,9 @@
         <% @order_details.each do |order_detail| %>
             <tr>
               <td><%= order_detail.item.name %></td>
-              <td><%= number_with_delimiter(order_detail.item.price) %></td>
+              <td><%= number_with_delimiter(order_detail.item.with_tax_price) %></td>
               <td><%= order_detail.amount %></td>
-              <td><%= number_with_delimiter(order_detail.amount * order_detail.item.price) %></td>
+              <td><%= number_with_delimiter(order_detail.amount * order_detail.item.with_tax_price) %></td>
             </tr>
           <% end %>
         </tbody>
