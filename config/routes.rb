@@ -44,7 +44,8 @@ Rails.application.routes.draw do
     get "customers/information/edit" => "customers#edit"
     patch "customers/information" => "customers#update"
   end
-
+  
+  get "public/search" => "public/searches#item_search"
   get "public/genres/:id/search" => "public/searches#genre_search"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

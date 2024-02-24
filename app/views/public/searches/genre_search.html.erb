@@ -2,7 +2,6 @@
 <%= render 'public/searches/genre_search' %>
 
 <h4><%= @genre.name %>(全<%= @items.count %>件)</h4>
- <!--trueの場合　写真　商品名　価格を表示-->
 <div>
   <% @items.each do |item| %>
     <div>
@@ -11,9 +10,9 @@
         <%= item.name %><br>
       <% end %>
     </div>
-    <% if item.is_active == true %>
+    <% if item.is_active == true %><!--trueの場合、金額を表示-->
       <p>¥<%= item.price %></p>
-    <% else %> <!--flaseの場合-->
+    <% else %> <!--flaseの場合、金額を表示せず販売停止中が表示-->
       <p>販売停止中</p>
     <% end %>
   <% end %>
