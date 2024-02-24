@@ -1,9 +1,9 @@
 <div class='container'>
   <div class='row'>
-    <div class='col'>
+    <div class='col-lg-12 mt-4'>
       <h3>商品編集</h3>
       <%= form_with model: @item, url: admin_item_path(@item), method: :patch do |f| %>
-      <table>
+      <table class="mt-4">
         <tr>
           <td><%= f.label "商品画像" %></td>
           <td><%= f.file_field :item_image, accept: "image/*" %></td>

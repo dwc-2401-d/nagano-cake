@@ -30,6 +30,9 @@ Rails.application.routes.draw do
     resources :customers, only: [:index, :show, :edit, :update]
     resources :genres, only: [:create, :index, :edit, :update]
     resources :items, only: [:new, :create, :index, :show, :edit, :update]
+    resources :orders, only: [:show, :update] do
+      resources :order_details, only: [:update]
+    end
   end
 
   scope module: :public do

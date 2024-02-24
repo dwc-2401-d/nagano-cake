@@ -1,9 +1,9 @@
 <div class="container">
   <div class="row">
-    <div class="col">
+    <div class="col mt-4">
       <h2><%= @customer.first_name + @customer.last_name %>さんの会員情報編集</h2>
       <%= form_with model: @customer, url: admin_customer_path(@customer), method: :patch do |f| %>
-        <table>
+        <table class="mt-4">
           <tr>
             <th>会員ID</th><!--ここは保存しなくていいのでform_withより上でいいかもですが見にくくなりそうなのでform_withの中に入れました-->
             <th><%= @customer.id %></th>
@@ -40,7 +40,7 @@
             <th><%= f.radio_button :is_active, "false" %>退会</th>
           </tr>
         </table>
-        <%= f.submit "変更を保存" %>
+        <%= f.submit "変更を保存", class: "btn btn-success" %>
       <% end %>
     </div>
   </div>
