@@ -9,6 +9,15 @@
     <script src="https://kit.fontawesome.com/86eb26b4da.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <style>
+      h1, h2, h3, h4, h5, h6 {
+        font-family: serif;
+        color: #cd5c5c;
+        padding-bottom: .2em;
+        border-bottom: 3px double #b8860b;
+      }
+    </style>
   </head>
   <header>
     <% if request.fullpath.include? "/admin" %>
