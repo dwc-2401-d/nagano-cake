@@ -2,7 +2,6 @@
   <div class="row">
     <div class="col mt-4">
       <h2><%= @customer.first_name + @customer.last_name %>さんの会員情報編集</h2>
-      <%= form_with model: @customer, url: admin_customer_path(@customer), method: :patch do |f| %>
         <table class="mt-4">
           <tr>
             <th>会員ID</th><!--ここは保存しなくていいのでform_withより上でいいかもですが見にくくなりそうなのでform_withの中に入れました-->
@@ -10,31 +9,32 @@
           </tr>
           <tr>
             <th>氏名</th>
-            <th><%= f.text_field :first_name %></th>
-            <th><%= f.text_field :last_name %></th>
+            <th><%= @customer.first_name %></th>
+            <th><%= @customer.last_name %></th>
           </tr>
           <tr>
             <th>フリガナ</th>
-            <th><%= f.text_field :first_name_kana %></th>
-            <th><%= f.text_field :last_name_kana %></th>
+            <th><%= @customer.first_name_kana %></th>
+            <th><%= @customer.last_name_kana %></th>
           </tr>
           <tr>
             <th>郵便番号</th>
-            <th><%= f.text_field :post_code %></th>
+            <th><%= @customer.post_code %></th>
           </tr>
           <tr>
             <th>住所</th>
-            <th><%= f.text_field :address %></th>
+            <th><%= @customer.address %></th>
           </tr>
           <tr>
             <th>電話番号</th>
-            <th><%= f.text_field :telephone_number %></th>
+            <th><%= @customer.telephone_number %></th>
           </tr>
           <tr>
             <th>メールアドレス</th>
-            <th><%= f.text_field :email %></th>
+            <th><%= @customer.email %></th>
           </tr>
           <tr>
+          <%= form_with model: @customer, url: admin_customer_path(@customer), method: :patch do |f| %>
             <th>会員ステータス</th><!--ボタンで選択式-->
             <th><%= f.radio_button :is_active, "true" %>有効</th>
             <th><%= f.radio_button :is_active, "false" %>退会</th>

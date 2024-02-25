@@ -18,6 +18,12 @@ class Item < ApplicationRecord
   validates :price, presence: true
   validates :item_image, presence: true
   
-
+  def self.looks(search, word)
+    if search == "partial_match"
+      @item = Item.where("name LIKE?", "%#{word}%")
+    else
+      @item = Item.all
+    end
+  end
 end
 
