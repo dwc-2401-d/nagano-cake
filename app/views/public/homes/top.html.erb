@@ -46,4 +46,8 @@
         </div>
     </div>
   </div>
+  <div style="position: relative; top: -20px; text-align: right;">
+  <%= link_to "全ての商品をみる", public_items_path %>
+  </div>
+  <%= render 'public/searches/genre_search', genres: @genres %>
 </div>

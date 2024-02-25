@@ -1,13 +1,18 @@
 class Admin::ItemsController < ApplicationController
 # 管理者以外はアクセスできないように
+  before_action :authenticate_admin!
+
   def new
     @item = Item.new
   end
 
-  def create # ifで実行できなかった時の動き
+  def create
     @item = Item.new(item_params)
-    @item.save
-    redirect_to admin_item_path(@item.id)
+    if @item.save
+      redirect_to admin_item_path(@item.id)
+    else
+      redirect_to request.referer
+    end
   end
 
   def index
@@ -22,10 +27,13 @@ class Admin::ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-  def update # ifで実行できなかった時の動き
+  def update
     @item = Item.find(params[:id])
-    @item.update(item_params)
-    redirect_to admin_item_path(@item.id)
+    if @item.update(item_params)
+      redirect_to admin_item_path(@item.id)
+    else
+      redirect_to request.referer
+    end
   end
 
   private
