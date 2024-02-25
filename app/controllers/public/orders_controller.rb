@@ -1,5 +1,6 @@
 class Public::OrdersController < ApplicationController
   before_action :authenticate_customer!
+  before_action :check_cart_item
 
   def new
     @order = Order.new
@@ -59,15 +60,22 @@ class Public::OrdersController < ApplicationController
   end
 
   def show
-    @cart_item = CartItem.where(customer_id: current_customer.id) 
+    @cart_item = CartItem.where(customer_id: current_customer.id)
     @order = Order.find(params[:id])
     @order_details= OrderDetail.where(order_id: @order.id)
   end
-
 
   private
 
   def order_params
     params.require(:order).permit(:customer_id, :payment_method, :post_code, :address, :name, :total_payment, :shipping_cost, :status)
   end
+
+  def check_cart_item
+    @cart_item = current_customer.cart_items.all
+    if @cart_item.empty?
+      redirect_to public_cart_items_path
+    end
+  end
+
 end

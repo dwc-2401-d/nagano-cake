@@ -1,5 +1,6 @@
 class Admin::CustomersController < ApplicationController
 # 管理者以外はアクセスできないように
+  before_action :authenticate_admin!
 
   def index
    @customers = Customer.all.page(params[:page]).per(10)
@@ -24,4 +25,4 @@ class Admin::CustomersController < ApplicationController
   def customer_params
     params.require(:customer).permit(:last_name, :first_name, :first_name_kana, :last_name_kana, :post_code, :address, :telephone_number, :email, :is_active)
   end
-  end
+end

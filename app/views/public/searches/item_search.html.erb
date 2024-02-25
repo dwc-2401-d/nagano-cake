@@ -1,0 +1,15 @@
+<h5>Item search for "<%= @word %>"</h5>
+<% @items.each do |item| %>
+<div>
+  <%= link_to public_item_path(item.id) do %>
+    <%= image_tag item.item_image, size: "100x100" %><br>
+    <%= item.name %><br>
+  <% end %>
+  <% if item.is_active == true %><!--trueの場合、金額を表示-->
+    <p>¥<%= item.price %></p>
+  <% else %> <!--flaseの場合、金額を表示せず販売停止中が表示-->
+    <p>販売停止中</p>
+  <% end %>
+</div>
+<% end %>
+<%= link_to "全ての商品をみる", public_items_path %>
