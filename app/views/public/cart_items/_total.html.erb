@@ -1,0 +1,5 @@
+<% total_price = 0 %>
+<% cart_items.each do |cart_item| %>
+  <% total_price += cart_item.subtotal %>
+<% end %>
+¥<%= number_with_delimiter(total_price) %>
