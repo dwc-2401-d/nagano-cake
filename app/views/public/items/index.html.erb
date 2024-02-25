@@ -8,7 +8,7 @@
             <%= item.name %>
           <% end %>
           <% if item.is_active %>
-            ¥<%= item.price %>
+            ¥<%= number_with_delimiter(item.price) %>
           <% elsif %>
             販売停止中
           <% end %>
