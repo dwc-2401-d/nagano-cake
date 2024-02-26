@@ -8,7 +8,7 @@
         wait_payment: "入金待ち"
         confirm_payment: "入金確認"
         making: "製作中"
-        preparing_ship: "発送準備"
+        preparing_ship: "発送準備中"
         finish_prepara: "発送済み"
     order_detail:
       making_status:

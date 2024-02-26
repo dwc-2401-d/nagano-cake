@@ -37,15 +37,15 @@
       <table class="table table-bordered">
         <tr>
           <td style="background-color: #e9ecef;">商品合計</td>
-          <td><%= number_with_delimiter(@order.total_payment) %></td>
+          <td>¥<%= number_with_delimiter(@order.total_payment) %></td>
         </tr>
         <tr>
           <td style="background-color: #e9ecef;">配送料</td>
-          <td><%= @order.shipping_cost %></td>
+          <td>¥<%= @order.shipping_cost %></td>
         </tr>
         <tr>
           <td style="background-color: #e9ecef;", class="font-weight-bold">ご請求額</td>
-          <td><%= number_with_delimiter(@order.total_payment + @order.shipping_cost) %></td>
+          <td>¥<%= number_with_delimiter(@order.total_payment + @order.shipping_cost) %></td>
         </tr>
       </table>
     </div>
@@ -67,9 +67,9 @@
         <% @order_details.each do |order_detail| %>
             <tr>
               <td><%= order_detail.item.name %></td>
-              <td><%= number_with_delimiter(order_detail.item.with_tax_price) %></td>
+              <td>¥<%= number_with_delimiter(order_detail.item.with_tax_price) %></td>
               <td><%= order_detail.amount %></td>
-              <td><%= number_with_delimiter(order_detail.amount * order_detail.item.with_tax_price) %></td>
+              <td>¥<%= number_with_delimiter(order_detail.amount * order_detail.item.with_tax_price) %></td>
             </tr>
           <% end %>
         </tbody>
