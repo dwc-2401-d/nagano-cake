@@ -1,0 +1,8 @@
+.pagination li a {
+  text-decoration: none;
+  color: #222;
+}
+
+.pagination .active {
+  background: #333;
+}
