@@ -1,6 +1,6 @@
 class Public::OrdersController < ApplicationController
   before_action :authenticate_customer!
-  before_action :check_cart_item
+  before_action :check_cart_item, only:[:new]
 
   def new
     @order = Order.new
@@ -56,7 +56,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
-    @orders = Order.where(customer_id: current_customer.id)
+    @orders = Order.where(customer_id: current_customer.id).page(params[:page]).per(10)
   end
 
   def show

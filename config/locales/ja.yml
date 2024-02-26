@@ -7,15 +7,15 @@
       status:
         wait_payment: "入金待ち"
         confirm_payment: "入金確認"
-        making: "制作中"
+        making: "製作中"
         preparing_ship: "発送準備"
         finish_prepara: "発送済み"
     order_detail:
       making_status:
-        impossible: "制作不可"
-        waiting_manufacture: "制作待ち"
+        impossible: "製作不可"
+        waiting_manufacture: "製作待ち"
         in_making: "製作中"
-        finish: "制作完了"
+        finish: "製作完了"
 activerecord:
     errors:
       messages:
