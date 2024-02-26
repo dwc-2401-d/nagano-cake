@@ -46,9 +46,9 @@
         <% @order_details.each do |order_detail| %>
           <tr>
             <td><%= order_detail.item.name %></td>
-            <td><%= order_detail.price %></td>
+            <td><%= number_with_delimiter(order_detail.price) %></td>
             <td><%= order_detail.amount %></td>
-            <td><%= order_detail.price * order_detail.amount %></td>
+            <td><%= number_with_delimiter(order_detail.price * order_detail.amount) %></td>
             <!--引数として order_detail.order.id および order_detail.id を渡しています。これにより、注文詳細の親である注文と、注文詳細自体のIDが取得されます。
                 ルーティングの設定により、これらのIDが埋め込まれ、対応するパスが生成されます。
                 例えば、order_detail.order.id が 1 で order_detail.id が 2 の場合、admin_order_order_detail_path(1, 2) は /admin/orders/1/order_details/2 といったパスを生成することになります。-->
@@ -63,7 +63,7 @@
       <table>
         <tr>
           <th>商品合計</th>
-          <th>¥<%= @order_product_total %></th>
+          <th>¥<%= number_with_delimiter(@order_product_total) %></th>
         </tr>
         <tr>
           <th>送料</th>
@@ -71,7 +71,7 @@
         </tr>
         <tr>
           <th>請求金額合計</th>
-          <th>¥<%= @order_product_total + @order.shipping_cost %></th>
+          <th>¥<%= number_with_delimiter(@order_product_total + @order.shipping_cost) %></th>
         </tr>
       </table>
     </div>
