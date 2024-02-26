@@ -17,16 +17,21 @@
       </thead>
       <tbody>
         <% @cart_items.each do |cart_item| %>
-          <tr>
+          <!--非同期用にidを付与-->
+          <tr id="cart_item_<%= cart_item.id %>">
             <td><%= image_tag cart_item.item.item_image, size: "80x50" %><%= cart_item.item.name %></td>
-            <td class="align-middle"><%= cart_item.item.with_tax_price %></td>
-            <td class="align-middle">
-              <%= form_with model: cart_item, url: public_cart_item_path(cart_item.id), method: :patch do |f| %>
+            <!--3桁ごとにコンマをつける処理-->
+            <td class="align-middle">number_with_delimiter(cart_item.item.with_tax_price) %></td>
+            <td class="align-middle" id="select-form">
+              <%= form_with model: cart_item, url: public_cart_item_path(cart_item.id), method: :patch, local: false do |f| %>
+                <!--item_idキーに対してcart_item_item_idという値をブラウザに表示せずデータベースへ送信-->
+                <%= f.hidden_field :item_id, value: cart_item.item.id %>
+                <!--個数選択のセレクトボックスを作成-->
                 <%= f.select :amount, *[1..10], include_blank: "個数選択" %>
-                <%= f.submit "変更", class: "btn btn-success ml-3" %>
+                <%#= f.submit "変更", class: "btn btn-success ml-3" %>
               <% end %>
             </td>
-            <td class="align-middle"><%= cart_item.subtotal %></td>
+            <td class="align-middle subtotal-area"><%= render "public/cart_items/subtotal", cart_item: cart_item %></td>
             <td class="align-middle"><%= link_to "削除する", public_cart_item_path(cart_item.id), method: :delete, class: "btn btn-danger ms-3" %></td>
           </tr>
         <% end %>
@@ -40,10 +45,7 @@
         <table class="table table-bordered">
           <tr>
             <td style="background-color: #e9ecef;">合計金額</td>
-              <% @cart_items.each do |cart_item| %>
-                <% @total_price += cart_item.subtotal %>
-              <% end %>
-            <td><%= @total_price %></td>
+            <td id="total-area"><%= render "public/cart_items/total", cart_items: @cart_items %></td>
           </tr>
         </table>
       </div>
@@ -56,3 +58,26 @@
     </div>
   </div>
 </div>
+
+<!--変更ボタンを押さなくてもselectで個数を変更すると自動で更新がされるコード-->
+<script>
+  $(document).on("change", "#select-form select", function() {
+    let form = $(this).closest("form");
+    let url = form.attr("action");
+    let method = form.attr("method");
+    let data = form.serialize();
+
+    $.ajax({
+      url: url,
+      method: method,
+      data: data,
+      success: function(response) {
+        let cartItemRow = form.closest("tr#cart_item");
+        cartItemRow.find(".subtotal-area").html(response);
+      },
+      error: function(xhr) {
+        console.log(xhr.responseText);
+      }
+    });
+  });
+</script>
