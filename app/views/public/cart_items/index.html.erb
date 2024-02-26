@@ -21,7 +21,7 @@
           <tr id="cart_item_<%= cart_item.id %>">
             <td><%= image_tag cart_item.item.item_image, size: "80x50" %><%= cart_item.item.name %></td>
             <!--3桁ごとにコンマをつける処理-->
-            <td class="align-middle">number_with_delimiter(cart_item.item.with_tax_price) %></td>
+            <td class="align-middle"><%= number_with_delimiter(cart_item.item.with_tax_price) %></td>
             <td class="align-middle" id="select-form">
               <%= form_with model: cart_item, url: public_cart_item_path(cart_item.id), method: :patch, local: false do |f| %>
                 <!--item_idキーに対してcart_item_item_idという値をブラウザに表示せずデータベースへ送信-->
