@@ -21,7 +21,7 @@
             <tr>
               <td>
                 <% if @item.is_active == true %>
-                <div>¥<%= @item.with_tax_price.to_s(:dalimited) %>(税込)</div>
+                <div>¥<%= number_with_delimiter(@item.with_tax_price) %>(税込)</div>
               </td>
             </tr>
             <tr>

@@ -36,25 +36,27 @@
       }
     </style>
   </head>
-  <header>
-    <% if request.fullpath.include? "/admin" %>
-      <%= render 'layouts/admin_header' %>
-    <% else %>
-      <%= render 'layouts/public_header' %>
-    <% end %>
-  </header>
-  <body>
-    <%= yield %>
-  </body>
-  <footer>
-    <div class="text-white" style="background-color:#a5294e;">
-      <div class="container mt-5">
-        <div class="row">
-          <div class="mx-auto">
-            TEAM-D-GYUTANN@DMM WEBCAMP
+　<body>
+    <header>
+      <% if request.fullpath.include? "/admin" %>
+        <%= render 'layouts/admin_header' %>
+      <% else %>
+        <%= render 'layouts/public_header' %>
+      <% end %>
+    </header>
+    <main>
+      <%= yield %>
+    </main>
+    <footer>
+      <div class="fixed-bottom text-white" style="background-color:#F6CECE;">
+        <div class="container mt-5">
+          <div class="row">
+            <div class="mx-auto">
+              TEAM-D-GYUTANN@DMM WEBCAMP
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </footer>
+    </footer>
+  </body>
 </html>
