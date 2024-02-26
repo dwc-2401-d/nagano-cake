@@ -1,0 +1,64 @@
+<div class="container p-4">
+  <div class="row">
+    <div class="col">
+      <h2 class="mb-4 text-center"><%= @customer.first_name + @customer.last_name %>さんの会員詳細</h5>
+        <div class="d-flex align-items-center pb-3">
+        <table class="mt-4">
+          <tr>
+            <th class="p-2">会員ID</th>
+            <td class="pr-5"></td>
+            <td class="p-2"><%= @customer.id %></td>
+          </tr>
+          <tr>
+            <th class="p-2">氏名</th><!--会員詳細は名字と名前の間にスペースがあるので全角スペース入れてます。-->
+            <td></td>
+            <td class="p-2"><%= @customer.first_name %>　<%= @customer.last_name %></td>
+          </tr>
+          <tr>
+            <th class="p-2">フリガナ</th><!--上に同じ-->
+            <td></td>
+            <td class="p-2"><%= @customer.first_name_kana %>　<%= @customer.last_name_kana %></td>
+          </tr>
+          <tr>
+            <th class="p-2">郵便番号</th>
+            <td></td>
+            <td class="p-2"><%= @customer.post_code %></td>
+          </tr>
+          <tr>
+            <th class="p-2">住所</th>
+            <td></td>
+            <td class="p-2"><%= @customer.address %></td>
+          </tr>
+          <tr>
+            <th class="p-2">電話番号</th>
+            <td></td>
+            <td class="p-2"><%= @customer.telephone_number %></td>
+          </tr>
+          <tr>
+            <th class="p-2">メールアドレス</th>
+            <td></td>
+            <td class="p-2"><%= @customer.email %></td>
+          </tr>
+          <tr>
+            <th class="p-2">会員ステータス</th>
+            <td></td>
+              <% if @customer.is_active == true %><!--customerのステータスが有効の時-->
+                <th class="text-success p-2">有効</th>
+              <% else %><!--それ以外-->
+                <th class="text-secondary p-2">退会済</th>
+              <% end %>
+          </tr>
+          <tr>
+            <th></th>
+            <td></td>
+            <td class="pt-4">
+              <span class="pr-5"><%= link_to "編集する", edit_admin_customer_path(@customer), class: "btn btn-success" %></span>
+              <span class="pl-5"><%= link_to "注文履歴一覧を見る", admin_path, class: "btn btn-primary" %></span>
+               <!--表示しているcustomerの注文履歴一覧へのリンク作る-->
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

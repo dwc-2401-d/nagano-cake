@@ -1,0 +1,41 @@
+<div class='container'>
+  <div class='row'>
+    <div class='col-lg-12 mt-4'>
+      <!--h3は赤星のを引っ張ってきましたw-->
+      <h2 class="text-center">商品一覧</h2>
+      <%= link_to new_admin_item_path do %>
+        <button type="button" class="btn btn-outline-secondary mt-3 mb-3"><i class="fa-solid fa-plus"></i> 新規登録</button>
+      <% end %>
+      <table class="table table-borderless">
+        <thead class="thead-light">
+          <tr>
+            <th>商品ID</th>
+            <th>商品名</th>
+            <th>税抜価格</th>
+            <th>ジャンル</th>
+            <th>ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @items.each do |item| %>
+          <tr>
+            <td><%= item.id %></td>
+            <td><%= link_to item.name, admin_item_path(item) %></td>
+            <td>¥<%= item.price.to_s(:delimited) %></td>
+            <td><%= item.genre.name %></td>
+          <% if item.is_active == true %><!--itemのステータスが有効の時-->
+            <td class="text-success">販売中</td>
+          <% else %><!--それ以外-->
+            <td class="text-secondary">販売停止中</td>
+          <% end %><!--ifのend-->
+          </tr>
+        <% end %><!--doのend-->
+        </tbody>
+      </table>
+      <div class="d-flex justify-content-center">
+        <%= paginate @items %>
+      </div>
+    </div>
+  </div>
+</div>
+

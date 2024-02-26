@@ -1,0 +1,44 @@
+<div class="container p-4">
+  <div class="row p-4">
+    <div class="col-md-3">
+      <div class="row-mt-2">
+        <%= render 'public/searches/genre_search', genres: @genres %>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div class="row text-center text-xs-center text-sm-left text-md-left mt-5">
+        <div class="col-md-5 offset-md-1 pr-5">
+          <%= image_tag @item.item_image, size: "330x220" %>
+        </div>
+        <div class="col-md-6 pl-5">
+          <table class="table table-borderless">
+            <tr>
+              <td><h4><%= @item.name %></h4></td>
+            </tr>
+            <tr>
+              <td><%= @item.introduction %></td>
+            </tr>
+            <tr>
+              <td>
+                <% if @item.is_active == true %>
+                <div>¥<%= number_with_delimiter(@item.with_tax_price) %>(税込)</div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <%= form_with model: @cart_item, url: public_cart_items_path, method: :post do |f| %>
+                  <%= f.hidden_field :item_id, :value => @item.id %>
+                  <%= f.select :amount, *[1..10] %>
+                  <%= f.submit 'カートに入れる', class: "btn btn-success" %>
+                <% end %>
+              </td>
+            </tr>
+          </table>
+          <% else %>
+            <p class="text-danger">販売停止中</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

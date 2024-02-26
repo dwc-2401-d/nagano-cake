@@ -6,11 +6,57 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/86eb26b4da.js" crossorigin="anonymous"></script>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
 
-  <body>
-    <%= yield %>
+    <style>
+      h1, h2, h3, h4, h5, h6 {
+        font-family: serif;
+        color: #e06284;
+        padding-bottom: .2em;
+        border-bottom: 3px double #b8860b;
+      }
+
+      body {
+        background-color: #fffefc;
+        margin-bottom: 55px;
+      }
+
+      footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: #a5294e;
+        color: white;
+        padding: 3px 0;
+        text-align: center;
+        z-index: 1; /* 追加 */
+      }
+    </style>
+  </head>
+  <header>
+    <% if request.fullpath.include? "/admin" %>
+      <%= render 'layouts/admin_header' %>
+    <% else %>
+      <%= render 'layouts/public_header' %>
+    <% end %>
+  </header>
+　<body>
+    <main>
+      <%= yield %>
+    </main>
+    <footer>
+      <div class="fixed-bottom text-white" style="background-color:#b72850;">
+        <div class="container mt-5">
+          <div class="row">
+            <div class="mx-auto">
+              TEAM-D-GYUTANN@DMM WEBCAMP
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
