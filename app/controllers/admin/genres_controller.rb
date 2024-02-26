@@ -2,10 +2,10 @@ class Admin::GenresController < ApplicationController
 # 管理者以外はアクセスできないように
   before_action :authenticate_admin!
 
-  def create # ifで実行できなかった時の動き
+  def create
     @genre = Genre.new(genre_params)
     if @genre.save
-      redirect_to admin_genres_path
+      @genres = Genre.all
     else
       redirect_to request.referer
     end
